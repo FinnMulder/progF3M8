@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Blogcontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\Homecontroller::class, 'homepage']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/blog', [\App\Http\Controllers\Blogcontroller::class, 'index'] )->name('blog.index' );
+
+require __DIR__.'/auth.php';
