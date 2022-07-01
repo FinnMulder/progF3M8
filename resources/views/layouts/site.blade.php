@@ -1,4 +1,4 @@
- guest.blade.php<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -19,13 +19,20 @@
     <body class="w-3/4 mx-auto p-3 bg-darkgray">
     <div>
     <header>
-        <h1 class="text-2xl text-darkgray">{{ config('app.name', 'Laravel') }} </h1>
+        <h1 class="text-2xl text-darkgray">{{ config('app.name', 'Laravel') }}</h1>
     </header>
+        <nav class="my-2">
+            <ul class="flex">
+                <li class="mr-3 px-4 py-2 @if(Route::currentRouteName() == 'blog.index') bg-black @else bg-lightblue @endif text-white"><a href="{{ route('blog.index')}}">Blog</a> </li>
+                <li class="mr-3 px-4 py-2 @if(Route::currentRouteName() == 'about.me') bg-black @else bg-lightblue @endif text-white"><a href="{{ route('about.me')}}">Over mij</a></li>
+                <li class="mr-3 px-4 py-2 @if(Route::currentRouteName() == 'contact.form') bg-black @else bg-lightblue @endif text-white"><a href="{{ route('contact.form')}}">Contact</a></li>
+            </ul>
+        </nav>
     <main>
             {{ $slot }}
     </main>
     <footer>
-        dit wordt de footer
+        @ 2022
     </footer>
     </div>
     </body>
